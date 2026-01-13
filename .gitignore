@@ -1,0 +1,7 @@
+__pycache__
+**/__pycache__
+debug
+cache
+database/debug
+database/btc_historical.db
+tier.log

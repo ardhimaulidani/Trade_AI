@@ -1,0 +1,83 @@
+mode: "dataset"
+
+params:
+  prox_pct: 0.0015
+  max_rr_allowed: 15
+  min_rr_allowed: 0.0
+  
+  lookahead:
+    s_days: 2
+    a_days: 1
+    b_hours: 12
+
+  bars:
+    per_day: 96
+    per_hour: 4
+
+  session_weight:
+    Asia: 0.30
+    London: 0.10
+    NewYork: 0.50
+    Close: 0.50
+
+  tier_filters:
+    "S+": {min_rr: 1.0, min_dist_pct: 0.0060, max_dist_pct: 0.05, max_tgt_dist_pct: 0.025}
+    "S": {min_rr: 1.0, min_dist_pct: 0.0060, max_dist_pct: 0.05, max_tgt_dist_pct: 0.025}
+    "A": {min_rr: 1.0, min_dist_pct: 0.0050, max_dist_pct: 0.05, max_tgt_dist_pct: 0.020}
+    "B": {min_rr: 0.8, min_dist_pct: 0.0035, max_dist_pct: 0.05, max_tgt_dist_pct: 0.015}
+    "C": {min_rr: 0.5, min_dist_pct: 0.0025, max_dist_pct: 0.05, max_tgt_dist_pct: 0.010}
+
+  tier_score:
+    "S": 8
+    "A": 6
+    "B": 4
+
+  pts:
+    "rotation_trigger": 1.00
+    "breakout_trigger": 1.00
+    "rotation_va_reject": 1.00
+    "candle_hammer": 0.20
+    "candle_shooting_star": 0.20
+    "candle_marubozu": 0.50
+    "candle_engulfing": 0.20
+    "volume_spike": 0.25
+    "vwap_touch": 0.75
+    "ib_touch": 0.75
+    "session_bias": 1.0
+    "opening_type": 0.25
+    "value_migration": 1.25
+    "flow_confirm": 0.75
+
+btc_files:
+  vp: "database/parquet/btc/btc_features.parquet"
+  deriv: "database/parquet/btc/btc_deriv.parquet"
+  bars: "database/parquet/btc/btc_tpo_features.parquet"
+  rollingTPO: "database/parquet/btc/btc_rolling_tpo.parquet"
+  daily: "database/parquet/btc/daily_tpo_df.parquet"
+  composite: "database/parquet/btc/composite_df.parquet"
+  out_trades: "database/parquet/btc/event_trades.parquet"
+  out_summary: "database/csv/event_tier_summary_btc.csv"
+
+eth_files:
+  vp: "database/parquet/eth/eth_features.parquet"
+  deriv: "database/parquet/eth/eth_deriv.parquet"
+  bars: "database/parquet/eth/eth_tpo_features.parquet"
+  rollingTPO: "database/parquet/eth/eth_rolling_tpo.parquet"
+  daily: "database/parquet/eth/daily_tpo_df.parquet"
+  composite: "database/parquet/eth/composite_df.parquet"
+  out_trades: "database/parquet/eth/event_trades.parquet"
+  out_summary: "database/csv/event_tier_summary_eth.csv"
+
+sol_files:
+  vp: "database/parquet/sol/sol_features.parquet"
+  deriv: "database/parquet/sol/sol_deriv.parquet"
+  bars: "database/parquet/sol/sol_tpo_features.parquet"
+  rollingTPO: "database/parquet/sol/sol_rolling_tpo.parquet"
+  daily: "database/parquet/sol/daily_tpo_df.parquet"
+  composite: "database/parquet/sol/composite_df.parquet"
+  out_trades: "database/parquet/sol/event_trades.parquet"
+  out_summary: "database/csv/event_tier_summary_sol.csv"
+
+files:
+  db: "database/btc_historical.db"
+  state: "config/last_state.json"
